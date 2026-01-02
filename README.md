@@ -1,6 +1,20 @@
-# PsychoAssess
+<p align="center">
+  <img src="assets/banner.jpg" alt="PsychoAssess Banner" width="100%">
+</p>
 
-**AI-Powered Psychoeducational Assessment Workspace**
+<h1 align="center">PsychoAssess</h1>
+
+<p align="center">
+  <strong>AI-Powered Psychoeducational Assessment Workspace</strong>
+</p>
+
+<p align="center">
+  <a href="https://aviz85.github.io/psychoassess/">Website (Hebrew)</a> •
+  <a href="https://aviz85.github.io/psychoassess/instructions.html">Installation Guide</a> •
+  <a href="https://github.com/aviz85/psychoassess/issues">Report Issues</a>
+</p>
+
+---
 
 A Claude Code-based knowledge system designed to support psychologists throughout the psychoeducational assessment process. Built using skills, agents, and structured knowledge for real-time clinical support.
 
@@ -26,7 +40,7 @@ PsychoAssess provides an interactive, modular workspace for:
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/psychoassess.git
+git clone https://github.com/aviz85/psychoassess.git
 
 # Navigate to the workspace
 cd psychoassess

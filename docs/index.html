@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsychoAssess - סביבת עבודה להערכה פסיכו-חינוכית מבוססת AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #2563eb;
+            --teal: #0d9488;
+            --light-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .banner {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, var(--teal) 100%);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary-blue);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-blue);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+        }
+
+        .workflow-section {
+            background: var(--white);
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .workflow-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--secondary-blue), var(--teal));
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+        }
+
+        .step-content p {
+            color: var(--text-light);
+        }
+
+        .commands-section {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .commands-section .section-title {
+            color: var(--white);
+        }
+
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .command-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .command-name {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            color: var(--teal);
+            margin-bottom: 10px;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .command-desc {
+            opacity: 0.9;
+        }
+
+        .ethics-section {
+            background: linear-gradient(to bottom, var(--light-bg), #e2e8f0);
+        }
+
+        .ethics-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-right: 5px solid var(--teal);
+        }
+
+        .ethics-box h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .ethics-list {
+            list-style: none;
+        }
+
+        .ethics-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .ethics-list li:last-child {
+            border-bottom: none;
+        }
+
+        .ethics-list .check {
+            color: var(--teal);
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .workflow-step {
+                flex-direction: column;
+                text-align: center;
+            }
+            .step-number {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="../assets/banner.jpg" alt="PsychoAssess Banner" class="banner">
+
+    <section class="hero">
+        <div class="container">
+            <h1>PsychoAssess</h1>
+            <p>סביבת עבודה חכמה להערכה פסיכו-חינוכית מבוססת בינה מלאכותית</p>
+            <p class="subtitle">מערכת תמיכה אינטראקטיבית לפסיכולוגים - מחישוב ציונים, דרך פרשנות, ועד כתיבת דוחות</p>
+            <a href="instructions.html" class="cta-button">התחל עכשיו</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">למה PsychoAssess?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🧮</div>
+                    <h3>חישוב ציונים מדויק</h3>
+                    <p>חישוב אוטומטי של ציונים מרוכבים, רווחי סמך, אחוזונים וניתוח פערים בין מדדים - ללא טעויות חישוב.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>פרשנות מבוססת תבניות</h3>
+                    <p>זיהוי תבניות ציונים, יצירת השערות מרובות, וחיבור לפרופילים קליניים מוכרים.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>כתיבת דוחות מקצועית</h3>
+                    <p>תבניות מובנות, בנק ביטויים מקצועיים, וסגנון כתיבה ידידותי להורים עם דיוק קליני.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>אבחנה מבדלת</h3>
+                    <p>עצי החלטה מובנים להבחנה בין מצבים דומים - ADHD vs. חרדה, LD vs. ID ועוד.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>המלצות מבוססות ראיות</h3>
+                    <p>יצירת המלצות התערבות מותאמות אישית, מקושרות לממצאי ההערכה.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>תיעוד התנהגותי</h3>
+                    <p>טפסי תצפית מובנים לתיעוד התנהגות במהלך הבדיקה עם התייחסות לתקפות.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section workflow-section">
+        <div class="container">
+            <h2 class="section-title">תהליך העבודה</h2>
+            <div class="workflow-steps">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>קליטה ורקע</h4>
+                        <p>איסוף מידע מההפניה, היסטוריה התפתחותית, ורקע משפחתי באופן מובנה.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>תצפית התנהגותית</h4>
+                        <p>תיעוד מובנה של התנהגות במהלך הבדיקה - קשב, גישה למשימות, מצב רגשי.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>חישוב וניקוד</h4>
+                        <p>הזנת ציונים גולמיים וקבלת ציונים מרוכבים, רווחי סמך, ואחוזונים.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>פרשנות ואינטגרציה</h4>
+                        <p>ניתוח תבניות, יצירת השערות, וחיבור בין מקורות מידע שונים.</p>
+                    </div>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>כתיבת דוח והמלצות</h4>
+                        <p>טיוטת סעיפי דוח, גיבוש המלצות מבוססות ראיות, וסיכום המקרה.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section commands-section">
+        <div class="container">
+            <h2 class="section-title">פקודות מהירות</h2>
+            <div class="commands-grid">
+                <div class="command-card">
+                    <div class="command-name">/score</div>
+                    <div class="command-desc">חישוב ציונים מרוכבים ורווחי סמך</div>
+                </div>
+                <div class="command-card">
+                    <div class="command-name">/interpret</div>
+                    <div class="command-desc">יצירת השערות פרשנות מתבניות ציונים</div>
+                </div>
+                <div class="command-card">
+                    <div class="command-name">/observe</div>
+                    <div class="command-desc">התחלת תיעוד תצפית התנהגותית</div>
+                </div>
+                <div class="command-card">
+                    <div class="command-name">/recommend</div>
+                    <div class="command-desc">יצירת המלצות התערבות</div>
+                </div>
+                <div class="command-card">
+                    <div class="command-name">/draft-section</div>
+                    <div class="command-desc">כתיבת סעיף בדוח</div>
+                </div>
+                <div class="command-card">
+                    <div class="command-name">/differential</div>
+                    <div class="command-desc">הנחיית אבחנה מבדלת</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section ethics-section">
+        <div class="container">
+            <h2 class="section-title">עקרונות אתיים</h2>
+            <div class="ethics-box">
+                <h3>AI כתמיכה, לא תחליף</h3>
+                <ul class="ethics-list">
+                    <li>
+                        <span class="check">✓</span>
+                        <span>כל תפוקות ה-AI הן השערות הדורשות שיקול דעת קליני</span>
+                    </li>
+                    <li>
+                        <span class="check">✓</span>
+                        <span>ההחלטות הסופיות נשארות בידי הפסיכולוג המוסמך</span>
+                    </li>
+                    <li>
+                        <span class="check">✓</span>
+                        <span>שמירה על סודיות - שימוש במספרי מקרה, לא בשמות</span>
+                    </li>
+                    <li>
+                        <span class="check">✓</span>
+                        <span>תיעוד השימוש ב-AI בדוחות כנדרש</span>
+                    </li>
+                    <li>
+                        <span class="check">✓</span>
+                        <span>שפה מסייגת ("התוצאות מרמזות", "הדפוס עקבי עם")</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>נבנה עם <a href="https://claude.ai/claude-code" target="_blank">Claude Code</a></p>
+            <div class="footer-links">
+                <a href="https://github.com/aviz85/psychoassess" target="_blank">GitHub</a>
+                <a href="instructions.html">הוראות התקנה</a>
+                <a href="https://github.com/aviz85/psychoassess/issues" target="_blank">דיווח על בעיות</a>
+            </div>
+            <p style="margin-top: 20px; opacity: 0.7;">© 2025 PsychoAssess - קוד פתוח תחת רישיון MIT</p>
+        </div>
+    </footer>
+</body>
+</html>

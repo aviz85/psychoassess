@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הוראות התקנה - PsychoAssess</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #2563eb;
+            --teal: #0d9488;
+            --light-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --code-bg: #1e293b;
+            --success: #22c55e;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 40px 20px;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+        }
+
+        .header a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 25px;
+            border: 2px solid var(--white);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .header a:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .content {
+            padding: 60px 0;
+        }
+
+        .section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section h2 .step-badge {
+            background: linear-gradient(135deg, var(--secondary-blue), var(--teal));
+            color: var(--white);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .section h3 {
+            color: var(--secondary-blue);
+            font-size: 1.3rem;
+            margin: 25px 0 15px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .code-block {
+            background: var(--code-bg);
+            color: #e2e8f0;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .code-block .comment {
+            color: #64748b;
+        }
+
+        .code-block .command {
+            color: #22c55e;
+        }
+
+        .code-block .output {
+            color: #94a3b8;
+        }
+
+        .inline-code {
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            direction: ltr;
+        }
+
+        .note {
+            background: #fef3c7;
+            border-right: 4px solid var(--warning);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .note.success {
+            background: #dcfce7;
+            border-right-color: var(--success);
+        }
+
+        .note.info {
+            background: #dbeafe;
+            border-right-color: var(--secondary-blue);
+        }
+
+        .note-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .requirements-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .requirements-list li {
+            background: var(--light-bg);
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .requirements-list .icon {
+            font-size: 1.5rem;
+        }
+
+        .os-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .os-tab {
+            padding: 10px 25px;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .os-tab:hover, .os-tab.active {
+            border-color: var(--secondary-blue);
+            background: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        .os-content {
+            display: none;
+        }
+
+        .os-content.active {
+            display: block;
+        }
+
+        .command-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .command-table th, .command-table td {
+            padding: 15px;
+            text-align: right;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .command-table th {
+            background: var(--light-bg);
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .command-table .cmd {
+            font-family: 'Fira Code', monospace;
+            color: var(--teal);
+            direction: ltr;
+            text-align: left;
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 25px;
+            }
+            .section h2 {
+                font-size: 1.4rem;
+            }
+            .code-block {
+                font-size: 0.85rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>🧠 הוראות התקנה</h1>
+            <a href="index.html">← חזרה לדף הבית</a>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <!-- Prerequisites -->
+            <section class="section">
+                <h2><span class="step-badge">📋</span>דרישות מקדימות</h2>
+                <p>לפני שמתחילים, וודאו שהכלים הבאים מותקנים במחשב:</p>
+
+                <ul class="requirements-list">
+                    <li>
+                        <span class="icon">📦</span>
+                        <div>
+                            <strong>Node.js 18+</strong>
+                            <br><small>סביבת הרצה ל-JavaScript</small>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🔧</span>
+                        <div>
+                            <strong>npm</strong>
+                            <br><small>מנהל חבילות (מגיע עם Node.js)</small>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🌿</span>
+                        <div>
+                            <strong>Git</strong>
+                            <br><small>מערכת ניהול גרסאות</small>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🔑</span>
+                        <div>
+                            <strong>חשבון Anthropic</strong>
+                            <br><small>לקבלת מפתח API</small>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Step 1: Node.js -->
+            <section class="section">
+                <h2><span class="step-badge">1</span>התקנת Node.js</h2>
+                <p>Node.js היא סביבת הרצה ל-JavaScript שנדרשת להפעלת Claude Code.</p>
+
+                <div class="os-tabs">
+                    <div class="os-tab active" onclick="showOS('mac')">macOS</div>
+                    <div class="os-tab" onclick="showOS('windows')">Windows</div>
+                    <div class="os-tab" onclick="showOS('linux')">Linux</div>
+                </div>
+
+                <div id="mac" class="os-content active">
+                    <h3>macOS</h3>
+                    <p>הדרך הקלה ביותר היא באמצעות Homebrew:</p>
+                    <div class="code-block">
+<span class="comment"># התקנת Homebrew (אם לא מותקן)</span>
+<span class="command">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</span>
+
+<span class="comment"># התקנת Node.js</span>
+<span class="command">brew install node</span>
+
+<span class="comment"># בדיקת גרסה</span>
+<span class="command">node --version</span>
+<span class="output"># v20.x.x או גבוה יותר</span>
+                    </div>
+                    <p>לחילופין, ניתן להוריד ישירות מ-<a href="https://nodejs.org" target="_blank">nodejs.org</a></p>
+                </div>
+
+                <div id="windows" class="os-content">
+                    <h3>Windows</h3>
+                    <ol>
+                        <li>היכנסו ל-<a href="https://nodejs.org" target="_blank">nodejs.org</a></li>
+                        <li>הורידו את גרסת ה-LTS (מומלצת)</li>
+                        <li>הריצו את קובץ ההתקנה ועקבו אחר ההוראות</li>
+                        <li>סמנו את האפשרות להתקין גם npm</li>
+                    </ol>
+                    <div class="code-block">
+<span class="comment"># בדיקת התקנה ב-Command Prompt או PowerShell</span>
+<span class="command">node --version</span>
+<span class="command">npm --version</span>
+                    </div>
+                </div>
+
+                <div id="linux" class="os-content">
+                    <h3>Linux (Ubuntu/Debian)</h3>
+                    <div class="code-block">
+<span class="comment"># עדכון רשימת חבילות</span>
+<span class="command">sudo apt update</span>
+
+<span class="comment"># התקנת Node.js מ-NodeSource</span>
+<span class="command">curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -</span>
+<span class="command">sudo apt install -y nodejs</span>
+
+<span class="comment"># בדיקת גרסה</span>
+<span class="command">node --version</span>
+<span class="command">npm --version</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: Git -->
+            <section class="section">
+                <h2><span class="step-badge">2</span>התקנת Git</h2>
+                <p>Git היא מערכת ניהול גרסאות שמאפשרת להוריד ולעדכן את הפרויקט.</p>
+
+                <h3>macOS</h3>
+                <div class="code-block">
+<span class="comment"># Git בדרך כלל מותקן מראש. בדקו:</span>
+<span class="command">git --version</span>
+
+<span class="comment"># אם לא מותקן, התקינו עם Homebrew:</span>
+<span class="command">brew install git</span>
+                </div>
+
+                <h3>Windows</h3>
+                <p>הורידו והתקינו מ-<a href="https://git-scm.com/download/win" target="_blank">git-scm.com</a></p>
+                <p>מומלץ לבחור "Git Bash" בזמן ההתקנה - זה נותן טרמינל נוח לשימוש.</p>
+
+                <h3>Linux</h3>
+                <div class="code-block">
+<span class="command">sudo apt install git</span>
+                </div>
+            </section>
+
+            <!-- Step 3: Claude Code -->
+            <section class="section">
+                <h2><span class="step-badge">3</span>התקנת Claude Code</h2>
+                <p>Claude Code הוא כלי ה-AI שמפעיל את PsychoAssess.</p>
+
+                <h3>אפשרות א': התקנה מהירה (מומלץ)</h3>
+                <div class="code-block">
+<span class="comment"># macOS / Linux</span>
+<span class="command">curl -fsSL https://claude.ai/install.sh | bash</span>
+                </div>
+
+                <h3>אפשרות ב': התקנה דרך npm</h3>
+                <div class="code-block">
+<span class="comment"># התקנה גלובלית (ללא sudo!)</span>
+<span class="command">npm install -g @anthropic-ai/claude-code</span>
+
+<span class="comment"># בדיקת התקנה</span>
+<span class="command">claude --version</span>
+                </div>
+
+                <div class="note">
+                    <div class="note-title">⚠️ חשוב</div>
+                    <p>אל תשתמשו ב-<span class="inline-code">sudo</span> בהתקנת npm. זה עלול לגרום לבעיות הרשאות.</p>
+                </div>
+
+                <h3>אימות התקנה</h3>
+                <div class="code-block">
+<span class="comment"># בדיקה שהכל עובד</span>
+<span class="command">claude doctor</span>
+                </div>
+            </section>
+
+            <!-- Step 4: API Key -->
+            <section class="section">
+                <h2><span class="step-badge">4</span>הגדרת מפתח API</h2>
+                <p>כדי להשתמש ב-Claude Code, צריך מפתח API מ-Anthropic.</p>
+
+                <ol>
+                    <li>היכנסו ל-<a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a></li>
+                    <li>צרו חשבון או התחברו</li>
+                    <li>לכו ל-"API Keys" ולחצו "Create Key"</li>
+                    <li>העתיקו את המפתח (הוא יוצג רק פעם אחת!)</li>
+                </ol>
+
+                <div class="note info">
+                    <div class="note-title">💡 טיפ</div>
+                    <p>בהפעלה הראשונה של Claude Code, הוא יבקש מכם להזין את המפתח. אפשר גם להגדיר משתנה סביבה:</p>
+                </div>
+
+                <div class="code-block">
+<span class="comment"># הגדרת משתנה סביבה (אופציונלי)</span>
+<span class="command">export ANTHROPIC_API_KEY="sk-ant-api..."</span>
+                </div>
+            </section>
+
+            <!-- Step 5: Clone Project -->
+            <section class="section">
+                <h2><span class="step-badge">5</span>הורדת PsychoAssess</h2>
+                <p>כעת נוריד את הפרויקט מ-GitHub:</p>
+
+                <div class="code-block">
+<span class="comment"># מעבר לתיקייה הרצויה</span>
+<span class="command">cd ~/Documents</span>
+
+<span class="comment"># הורדת הפרויקט</span>
+<span class="command">git clone https://github.com/aviz85/psychoassess.git</span>
+
+<span class="comment"># כניסה לתיקיית הפרויקט</span>
+<span class="command">cd psychoassess</span>
+                </div>
+
+                <div class="note success">
+                    <div class="note-title">✅ מצוין!</div>
+                    <p>ההתקנה הושלמה! כעת אפשר להתחיל להשתמש ב-PsychoAssess.</p>
+                </div>
+            </section>
+
+            <!-- Step 6: Usage -->
+            <section class="section">
+                <h2><span class="step-badge">6</span>התחלת עבודה</h2>
+                <p>הפעלת Claude Code בתוך תיקיית הפרויקט:</p>
+
+                <div class="code-block">
+<span class="comment"># וודאו שאתם בתיקיית הפרויקט</span>
+<span class="command">cd ~/Documents/psychoassess</span>
+
+<span class="comment"># הפעלת Claude Code</span>
+<span class="command">claude</span>
+                </div>
+
+                <p>לאחר ההפעלה, תוכלו להשתמש בפקודות הבאות:</p>
+
+                <table class="command-table">
+                    <thead>
+                        <tr>
+                            <th>פקודה</th>
+                            <th>תיאור</th>
+                            <th>דוגמה</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="cmd">/score</td>
+                            <td>חישוב ציונים</td>
+                            <td class="cmd">/score wisc-v SI:12 VC:11 BD:8</td>
+                        </tr>
+                        <tr>
+                            <td class="cmd">/interpret</td>
+                            <td>פרשנות ציונים</td>
+                            <td class="cmd">/interpret wisc-v VCI:106 VSI:81</td>
+                        </tr>
+                        <tr>
+                            <td class="cmd">/observe</td>
+                            <td>תיעוד תצפית</td>
+                            <td class="cmd">/observe</td>
+                        </tr>
+                        <tr>
+                            <td class="cmd">/recommend</td>
+                            <td>יצירת המלצות</td>
+                            <td class="cmd">/recommend working-memory</td>
+                        </tr>
+                        <tr>
+                            <td class="cmd">/draft-section</td>
+                            <td>כתיבת סעיף בדוח</td>
+                            <td class="cmd">/draft-section background</td>
+                        </tr>
+                        <tr>
+                            <td class="cmd">/case-summary</td>
+                            <td>סיכום מקרה</td>
+                            <td class="cmd">/case-summary</td>
+                        </tr>
+                        <tr>
+                            <td class="cmd">/differential</td>
+                            <td>אבחנה מבדלת</td>
+                            <td class="cmd">/differential adhd-vs-anxiety</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Tips -->
+            <section class="section">
+                <h2><span class="step-badge">💡</span>טיפים חשובים</h2>
+
+                <h3>שמירה על סודיות</h3>
+                <p>השתמשו תמיד במספרי מקרה (Case001, Case002) ולא בשמות אמיתיים של מטופלים.</p>
+
+                <h3>שמירת נתוני מקרה</h3>
+                <p>שמרו את כל נתוני המקרים בתיקיית <span class="inline-code">cases/</span> - היא מוגדרת ב-.gitignore ולא תועלה ל-GitHub.</p>
+
+                <h3>התאמה אישית</h3>
+                <p>העתיקו את <span class="inline-code">.claude/CLAUDE.local.md.template</span> ל-<span class="inline-code">.claude/CLAUDE.local.md</span> והתאימו להעדפותיכם.</p>
+
+                <h3>עדכון הפרויקט</h3>
+                <div class="code-block">
+<span class="comment"># עדכון לגרסה האחרונה</span>
+<span class="command">git pull origin main</span>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>נבנה עם <a href="https://claude.ai/claude-code" target="_blank">Claude Code</a></p>
+            <p style="margin-top: 10px;">
+                <a href="https://github.com/aviz85/psychoassess" target="_blank">GitHub</a> |
+                <a href="index.html">דף הבית</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function showOS(os) {
+            // Hide all OS content
+            document.querySelectorAll('.os-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.os-tab').forEach(el => el.classList.remove('active'));
+
+            // Show selected OS content
+            document.getElementById(os).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
