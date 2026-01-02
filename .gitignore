@@ -1,0 +1,138 @@
+# ================================
+# PsychoAssess .gitignore
+# ================================
+
+# ================================
+# CONFIDENTIAL CLIENT DATA
+# ================================
+# All case files containing client information
+cases/
+case-data/
+client-data/
+patients/
+
+# Individual case files that might be outside cases folder
+*.case
+*.client
+*-case-*.md
+*-client-*.md
+
+# ================================
+# LOCAL PREFERENCES
+# ================================
+# Personal workspace preferences (auto-ignored by Claude Code)
+.claude/CLAUDE.local.md
+CLAUDE.local.md
+
+# ================================
+# SYSTEM FILES
+# ================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.directory
+
+# ================================
+# EDITOR/IDE FILES
+# ================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.*.sw?
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ================================
+# TEMPORARY FILES
+# ================================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Log files
+*.log
+logs/
+
+# ================================
+# EXPORTS AND REPORTS
+# ================================
+# Draft reports (may contain client info)
+drafts/
+exports/
+output/
+
+# PDF reports
+reports/*.pdf
+*.report.pdf
+
+# ================================
+# TEST AND SCORING DATA
+# ================================
+# Raw test data
+raw-data/
+scoring/
+test-protocols/
+
+# Q-Global exports
+*.qglobal
+*.pearson
+
+# ================================
+# CREDENTIALS AND SECRETS
+# ================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials/
+secrets/
+
+# ================================
+# ARCHIVES
+# ================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ================================
+# NOTES
+# ================================
+# Personal notes that might contain client info
+personal-notes/
+scratch/
+private/

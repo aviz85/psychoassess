@@ -1,0 +1,55 @@
+# Personal Assessment Preferences Template
+
+Copy this file to `.claude/CLAUDE.local.md` and customize for your preferences.
+This file is gitignored and will not be shared.
+
+---
+
+# My Assessment Preferences
+
+## Report Style
+- [ ] Strength-based language preferred
+- [ ] Parent-friendly terminology
+- [ ] Include page references for accommodations
+- [ ] Specific format preferences: _________________
+
+## Commonly Used Tests
+
+### Cognitive
+- WISC-V
+- (Add your commonly used tests)
+
+### Achievement
+- (Add your commonly used tests)
+
+### Behavioral/Emotional
+- BASC-3
+- (Add your commonly used tests)
+
+### Other
+- (Add your commonly used tests)
+
+## My Scoring Software
+- Q-Interactive
+- Pearson online scoring
+- (Add your scoring platforms)
+
+## Report Template Preferences
+- Header format: _________________
+- Footer format: _________________
+- Preferred sections: _________________
+
+## Classification Terminology
+- [ ] Use Wechsler classifications (default)
+- [ ] Use descriptive ranges
+- [ ] Other: _________________
+
+## Recommendation Preferences
+- Number of recommendations per report: _______
+- Priority categories to include: _________________
+- Formatting style: _________________
+
+## Local Resources
+- School district: _________________
+- Common referral sources: _________________
+- Community resources to recommend: _________________
